@@ -3,6 +3,7 @@ class QuizEntity {
   final String category;
   final String correctAnswer;
   final String question;
+  final String difficulty;
   final List<String> incorrectAnswers;
 
   QuizEntity(
@@ -10,5 +11,6 @@ class QuizEntity {
       required this.category,
       required this.correctAnswer,
       required this.question,
+      required this.difficulty,
       required this.incorrectAnswers});
 }
