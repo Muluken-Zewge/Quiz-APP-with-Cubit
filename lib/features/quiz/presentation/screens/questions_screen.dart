@@ -58,19 +58,19 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     return BlocBuilder<QuizCubit, QuizState>(builder: (context, state) {
       if (state is QuizLoadingState) {
         return Container(
-          color: Colors.white, // White background
+          color: Colors.white,
           child: const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CircularProgressIndicator(),
-                SizedBox(height: 16), // Spacing between spinner and text
+                SizedBox(height: 16),
                 Text(
                   "Loading...",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black87, // Text color
+                    color: Colors.black87,
                   ),
                 ),
               ],
