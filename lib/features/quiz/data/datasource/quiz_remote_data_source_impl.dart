@@ -11,17 +11,14 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDatasource {
       final response = await Dio().get(
           '${AppUrl.baseUrl}?categories=$category&difficulties=$difficulty&limit=$numberOfQusetions');
       if (response.statusCode == 200) {
-        print(response.data);
         final List<dynamic> quizJson = response.data as List<dynamic>;
         final quizzes =
             quizJson.map((json) => QuizModel.fromJson(json)).toList();
         return quizzes;
       } else {
-        print(response.statusCode);
         throw Exception('Failed to load quizzes');
       }
     } catch (e) {
-      print(e);
       throw Exception('An error occurred while fetching quizzes');
     }
   }
