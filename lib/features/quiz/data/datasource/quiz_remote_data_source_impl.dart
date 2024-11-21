@@ -8,7 +8,8 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDatasource {
   Future<List<QuizModel>> fetchQuiz(
       String category, String difficulty, int numberOfQusetions) async {
     try {
-      final response = await Dio().get('${AppUrl.baseUrl}?limit=2');
+      final response = await Dio().get(
+          '${AppUrl.baseUrl}?categories=$category&difficulties=$difficulty&limit=$numberOfQusetions');
       if (response.statusCode == 200) {
         print(response.data);
         final List<dynamic> quizJson = response.data as List<dynamic>;

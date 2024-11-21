@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:quiz_app_with_cubit/features/quiz/domain/entities/quiz_entity.dart';
 
 class QuizModel extends QuizEntity {
@@ -7,18 +9,21 @@ class QuizModel extends QuizEntity {
       required super.correctAnswer,
       required super.question,
       required super.difficulty,
-      required super.incorrectAnswers});
+      required super.shuffledAnswers});
 
   factory QuizModel.fromJson(Map<String, dynamic> json) {
+    final List<String> allAnswers = [
+      json['correctAnswer'],
+      ...List<String>.from(json['incorrectAnswers'])
+    ];
+    allAnswers.shuffle(Random());
     return QuizModel(
       id: json['id'] as String,
       category: json['category'] as String,
       correctAnswer: json['correctAnswer'] as String,
       question: json['question']['text'] as String,
       difficulty: json['difficulty'] as String,
-      incorrectAnswers: (json['incorrectAnswers'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      shuffledAnswers: allAnswers,
     );
   }
 
@@ -29,7 +34,7 @@ class QuizModel extends QuizEntity {
         correctAnswer: quizEntity.correctAnswer,
         question: quizEntity.question,
         difficulty: quizEntity.difficulty,
-        incorrectAnswers: quizEntity.incorrectAnswers);
+        shuffledAnswers: quizEntity.shuffledAnswers);
   }
 
   QuizEntity toQuizEntity() {
@@ -39,6 +44,6 @@ class QuizModel extends QuizEntity {
         correctAnswer: correctAnswer,
         question: question,
         difficulty: difficulty,
-        incorrectAnswers: incorrectAnswers);
+        shuffledAnswers: shuffledAnswers);
   }
 }

@@ -4,7 +4,7 @@ class QuizEntity {
   final String correctAnswer;
   final String question;
   final String difficulty;
-  final List<String> incorrectAnswers;
+  final List<String> shuffledAnswers;
 
   QuizEntity(
       {required this.id,
@@ -12,5 +12,5 @@ class QuizEntity {
       required this.correctAnswer,
       required this.question,
       required this.difficulty,
-      required this.incorrectAnswers});
+      required this.shuffledAnswers});
 }

@@ -11,6 +11,14 @@ final class QuizInitial extends QuizState {}
 
 class QuizLoadingState extends QuizState {}
 
-class QuizLoadingSuccessState extends QuizState {}
+class QuizLoadingSuccessState extends QuizState {
+  final List<QuizModel> quizes;
 
-class QuizLoadingFailureState extends QuizState {}
+  const QuizLoadingSuccessState(this.quizes);
+}
+
+class QuizLoadingFailureState extends QuizState {
+  final String message;
+
+  const QuizLoadingFailureState(this.message);
+}
