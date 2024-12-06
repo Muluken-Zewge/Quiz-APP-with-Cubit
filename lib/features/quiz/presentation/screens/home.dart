@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app_with_cubit/features/quiz/presentation/cubit/quiz_cubit.dart';
-import 'package:quiz_app_with_cubit/features/quiz/presentation/pages/difficulty_selection_page.dart';
-import 'package:quiz_app_with_cubit/features/quiz/presentation/pages/question_number_selection_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -69,14 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListTile(
                         title: Center(child: Text(categories[index])),
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => DifficultySelectionPage(
-                          //       selectedCategory: categories[index],
-                          //     ),
-                          //   ),
-                          // );
                           context
                               .read<QuizCubit>()
                               .selectedCatagory(categories[index]);

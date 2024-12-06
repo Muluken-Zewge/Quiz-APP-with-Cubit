@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app_with_cubit/features/quiz/presentation/cubit/quiz_cubit.dart';
-import 'package:quiz_app_with_cubit/features/quiz/presentation/pages/question_number_selection_page.dart';
 
 class DifficultySelectionPage extends StatelessWidget {
   final String selectedCategory;
@@ -52,16 +51,6 @@ class DifficultySelectionPage extends StatelessWidget {
                         child: ListTile(
                           title: Center(child: Text(difficulties[index])),
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) =>
-                            //         QuestionNumberSelectionPage(
-                            //       selectedCategory: selectedCategory,
-                            //       selectedDifficulty: difficulties[index],
-                            //     ),
-                            //   ),
-                            // );
                             context.read<QuizCubit>().selectedDifficulty(
                                 selectedCategory, difficulties[index]);
                           },
