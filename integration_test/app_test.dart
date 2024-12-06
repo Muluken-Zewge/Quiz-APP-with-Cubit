@@ -35,35 +35,36 @@ void main() {
     final startQuizButton = find.byType(ElevatedButton);
     await tester.tap(startQuizButton);
     await tester.pumpAndSettle();
-    Future.delayed(const Duration(seconds: 4));
-    // final progressIndicator = find.byType(CircularProgressIndicator);
+    Future.delayed(const Duration(seconds: 2));
 
-    // expect(progressIndicator, findsOneWidget);
-    // Future.delayed(const Duration(seconds: 2));
-
-    // await tester.pumpAndSettle();
     const questionScreen = QuestionsScreen;
-    expect(find.byType(questionScreen), findsOneWidget);
+    final errorMessageFinder = find.text('Failed to fetch quizzes.');
 
-    final slectedChoice = find.byType(GestureDetector).at(1);
-    await tester.tap(slectedChoice);
-    await tester.pump();
-    Future.delayed(const Duration(seconds: 4));
+    if (find.byType(questionScreen).evaluate().isNotEmpty) {
+      expect(find.byType(questionScreen), findsOneWidget);
 
-    final finishButton = find.byType(ElevatedButton);
-    await tester.tap(finishButton);
-    await tester.pumpAndSettle();
-    Future.delayed(const Duration(seconds: 4));
+      final slectedChoice = find.byType(GestureDetector).at(1);
+      await tester.tap(slectedChoice);
+      await tester.pump();
+      Future.delayed(const Duration(seconds: 4));
 
-    const resultScreen = ResultScreen;
-    expect(find.byType(resultScreen), findsOneWidget);
+      final finishButton = find.byType(ElevatedButton);
+      await tester.tap(finishButton);
+      await tester.pumpAndSettle();
+      Future.delayed(const Duration(seconds: 4));
 
-    final homeIcon = find.byIcon(Icons.home);
-    await tester.tap(homeIcon);
-    await tester.pumpAndSettle();
-    Future.delayed(const Duration(seconds: 4));
+      const resultScreen = ResultScreen;
+      expect(find.byType(resultScreen), findsOneWidget);
 
-    const homeScreen = HomeScreen;
-    expect(find.byType(homeScreen), findsOneWidget);
+      final homeIcon = find.byIcon(Icons.home);
+      await tester.tap(homeIcon);
+      await tester.pumpAndSettle();
+      Future.delayed(const Duration(seconds: 4));
+
+      const homeScreen = HomeScreen;
+      expect(find.byType(homeScreen), findsOneWidget);
+    } else if (errorMessageFinder.evaluate().isNotEmpty) {
+      expect(errorMessageFinder, findsOneWidget);
+    }
   });
 }

@@ -19,7 +19,8 @@ class QuizRemoteDataSourceImpl implements QuizRemoteDatasource {
             quizJson.map((json) => QuizModel.fromJson(json)).toList();
         return quizzes;
       } else {
-        throw Exception('Failed to load quizzes');
+        throw Exception(
+            'Failed to load quizzes wit status code ${response.statusCode}');
       }
     } catch (e) {
       throw Exception('An error occurred while fetching quizzes');
