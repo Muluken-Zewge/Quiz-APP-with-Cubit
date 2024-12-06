@@ -7,7 +7,21 @@ sealed class QuizState extends Equatable {
   List<Object> get props => [];
 }
 
-final class QuizInitial extends QuizState {}
+class QuizInitialSuccessState extends QuizState {}
+
+class CategorySelectedSuccessState extends QuizState {
+  final String selectedCategory;
+
+  const CategorySelectedSuccessState(this.selectedCategory);
+}
+
+class DifficultySelectedSuccessState extends QuizState {
+  final String selectedCategory;
+  final String selectedDifficulty;
+
+  const DifficultySelectedSuccessState(
+      this.selectedCategory, this.selectedDifficulty);
+}
 
 class QuizLoadingState extends QuizState {}
 

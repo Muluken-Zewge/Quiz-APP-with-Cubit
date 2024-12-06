@@ -8,7 +8,19 @@ part 'quiz_state.dart';
 
 class QuizCubit extends Cubit<QuizState> {
   final GetQuizUsecase getQuizUsecase;
-  QuizCubit(this.getQuizUsecase) : super(QuizInitial());
+  QuizCubit(this.getQuizUsecase) : super(QuizInitialSuccessState());
+
+  void initialize() {
+    emit(QuizInitialSuccessState());
+  }
+
+  void selectedCatagory(String catagory) {
+    emit(CategorySelectedSuccessState(catagory));
+  }
+
+  void selectedDifficulty(String category, String difficulty) {
+    emit(DifficultySelectedSuccessState(category, difficulty));
+  }
 
   Future<void> fetchQuizzes(
       String category, String difficulty, int numberOfQuestions) async {
