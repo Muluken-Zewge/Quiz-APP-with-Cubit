@@ -43,6 +43,11 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
+  bdd_widget_test: ^1.7.4
+  build_runner: ^2.4.13
+  mockito: ^5.4.4
 # flutter_icons:
 #   android: "launcher_icon"
 #   ios: true

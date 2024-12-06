@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app_with_cubit/features/quiz/data/datasource/quiz_remote_data_source_impl.dart';
@@ -7,15 +8,16 @@ import 'package:quiz_app_with_cubit/features/quiz/presentation/cubit/quiz_cubit.
 import 'package:quiz_app_with_cubit/features/quiz/presentation/screens/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final dio = Dio();
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final quizRemoteDataSource = QuizRemoteDataSourceImpl();
+    final quizRemoteDataSource = QuizRemoteDataSourceImpl(dio: dio);
     final quizRepository =
         QuizRepositoryImpl(quizRemoteDatasource: quizRemoteDataSource);
     final getQuizUsecase = GetQuizUsecase(quizRepository);
