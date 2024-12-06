@@ -4,11 +4,14 @@ import 'package:quiz_app_with_cubit/features/quiz/data/datasource/quiz_remote_da
 import 'package:quiz_app_with_cubit/features/quiz/data/models/quiz_model.dart';
 
 class QuizRemoteDataSourceImpl implements QuizRemoteDatasource {
+  final Dio dio;
+
+  QuizRemoteDataSourceImpl({required this.dio});
   @override
   Future<List<QuizModel>> fetchQuiz(
       String category, String difficulty, int numberOfQusetions) async {
     try {
-      final response = await Dio().get(
+      final response = await dio.get(
           '${AppUrl.baseUrl}?categories=$category&difficulties=$difficulty&limit=$numberOfQusetions');
       if (response.statusCode == 200) {
         final List<dynamic> quizJson = response.data as List<dynamic>;
