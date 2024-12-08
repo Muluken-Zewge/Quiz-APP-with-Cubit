@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:quiz_app_with_cubit/features/quiz/domain/entities/quiz_entity.dart';
 
 class QuizModel extends QuizEntity {
-  QuizModel(
+  const QuizModel(
       {required super.id,
       required super.category,
       required super.correctAnswer,
