@@ -25,31 +25,40 @@ void main() {
     final quizModels = [
       const QuizModel(
           id: 'id',
-          category: 'category',
+          category: 'Music',
           correctAnswer: 'correctAnswer',
           question: 'question',
-          difficulty: 'difficulty',
+          difficulty: 'Easy',
           shuffledAnswers: ['shuffledAnswers'])
     ];
+
+    final quizEntities = quizModels
+        .map((model) => QuizEntity(
+            id: model.id,
+            category: model.category,
+            correctAnswer: model.correctAnswer,
+            question: model.question,
+            difficulty: model.difficulty,
+            shuffledAnswers: model.shuffledAnswers))
+        .toList();
     test(
         'should return a list of QuizEntity when the call to remote data source is successful',
         () async {
-      when(mockQuizRemoteDatasource.fetchQuiz('category', 'difficulty', 1))
+      when(mockQuizRemoteDatasource.fetchQuiz('Music', 'Easy', 1))
           .thenAnswer((_) async => quizModels);
 
-      final quizEntities = quizModels
-          .map((model) => QuizEntity(
-              id: model.id,
-              category: model.category,
-              correctAnswer: model.correctAnswer,
-              question: model.question,
-              difficulty: model.difficulty,
-              shuffledAnswers: model.shuffledAnswers))
-          .toList();
-
-      final result =
-          await quizRepositoryImpl.getQuiz('category', 'difficulty', 1);
+      final result = await quizRepositoryImpl.getQuiz('Music', 'Easy', 1);
       expect(result, equals(Right<Failure, List<QuizEntity>>(quizEntities)));
+    });
+
+    test(
+        'should return ServerFailure when the call to remote data source throws an exception',
+        () async {
+      when(mockQuizRemoteDatasource.fetchQuiz('Music', 'Easy', 1))
+          .thenThrow(Exception());
+
+      final result = await quizRepositoryImpl.getQuiz('Music', 'Easy', 1);
+      expect(result, equals(Left(ServerFailure())));
     });
   });
 }

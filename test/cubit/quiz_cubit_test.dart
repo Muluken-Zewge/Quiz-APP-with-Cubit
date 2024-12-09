@@ -32,7 +32,7 @@ void main() {
 
   group('test entire QuizCubit', () {
     final List<QuizEntity> quizEntities = [
-      QuizEntity(
+      const QuizEntity(
           id: 'id',
           category: 'category',
           correctAnswer: 'correctAnswer',
