@@ -1,21 +1,14 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:quiz_app_with_cubit/core/error/failure.dart';
-import 'package:quiz_app_with_cubit/features/quiz/data/datasource/quiz_remote_data_source_impl.dart';
 import 'package:quiz_app_with_cubit/features/quiz/data/models/quiz_model.dart';
 import 'package:quiz_app_with_cubit/features/quiz/domain/entities/quiz_entity.dart';
 import 'package:quiz_app_with_cubit/features/quiz/domain/usecases/get_quiz_usecase.dart';
 import 'package:quiz_app_with_cubit/features/quiz/presentation/cubit/quiz_cubit.dart';
 
 class MockGetQuizUsecase extends Mock implements GetQuizUsecase {}
-
-class MockDio extends Mock implements Dio {}
-
-class MockQuizRemoteDataSourceImpl extends Mock
-    implements QuizRemoteDataSourceImpl {}
 
 void main() {
   late MockGetQuizUsecase mockGetQuizUsecase;

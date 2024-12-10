@@ -5,6 +5,7 @@ import 'package:bdd_widget_test/data_table.dart' as bdd;
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quiz_app_with_cubit/core/injection_container.dart';
 
 import './step/the_app_is_running.dart';
 import './step/i_see_the_catagory_selection_page.dart';
@@ -20,7 +21,7 @@ import './step/i_see_number.dart';
 import './step/i_tap_the_icon.dart';
 
 void main() {
-  final dio = Dio();
+  final dio = serviceLocator<Dio>();
   group('''Catagory, difficulty and question number Selection''', () {
     testWidgets('''Catagory Selection screen is presented''', (tester) async {
       await theAppIsRunning(tester);
